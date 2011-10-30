@@ -12,7 +12,7 @@
                  "exec"])
 
 (def clojure-vars ["def" "->" "defn" "use" "require" "ns"])
-(def keywords ["(:[a-zA-Z_><]+?)"])
+(def keywords ["(:[a-zA-Z_><\\.#]+?)"])
 (def comments [#";;.*"])
 
 (defn file-filter [coll]
