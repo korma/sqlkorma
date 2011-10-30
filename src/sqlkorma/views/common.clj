@@ -14,7 +14,7 @@
               [:h1 (link-to "/" (image "/img/korma-logo.png" "Korma"))]
               [:h2 "Tasty SQL for Clojure"]]
              [:ul
-              [:li (link-to "/" "MailingList")]
+              [:li (link-to "http://groups.google.com/group/sqlkorma" "MailingList")]
               [:li (link-to "/docs" "Docs")]
               [:li (link-to "http://github.com/ibdknox/korma" "Source")]]])
 
