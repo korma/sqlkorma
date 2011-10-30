@@ -41,7 +41,7 @@
 ;;************************************************
 
 (section db "db"
-  [:p "woot"]
+  [:p "blah blah"]
   (code :db-intro :full)
   (code :db-types :full))
 
