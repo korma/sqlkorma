@@ -47,12 +47,14 @@
 
 (section entities "entities"
   (code :entities :full)
+  (code :rel :full)
   [:p "woot"])
 
 (section select "select queries"
   (code :selects :full)
-  (code :select-fn :full)
   (code :where :full)
+  (code :with :full)
+  (code :select-fn :full)
   [:p "woot"])
 
 (section update "update queries"
@@ -67,10 +69,9 @@
          (code :delete :full)
   [:p "woot"])
 
-(comment
 (section misc "misc"
+         (code :execmodes :full)
   [:p "woot"])
-  )
 
 ;;************************************************
 ;; pages 

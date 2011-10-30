@@ -9,7 +9,7 @@
                  "defentity" "has-one" "has-many" "belongs-to" "transform" "prepare" "table-fields" "table" "pk"
                  "select" "select\\*" "where" "fields" "with" "order" "limit" "offset" "join" "values" "update" "insert" "delete" "update\\*" "delete\\*" "insert\\*" "set-fields"
                  "like" "and" "or" "=" ">=" ">" "<" "<=" "not" "not=" "in"
-                 "exec"])
+                 "exec" "sql-only" "dry-run"])
 
 (def clojure-vars ["def" "->" "defn" "use" "require" "ns"])
 (def keywords ["(:[a-zA-Z_><\\.#\\-]+?)"])

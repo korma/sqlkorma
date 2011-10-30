@@ -10,7 +10,7 @@
 ;;Multiple where's are joined with AND, so this
 ;;is also the same:
 (select users
-  (where {:first "chris"})
+  (where {:first "john"})
   (where {:last "doe"}))
 
 ;;You can use other predicates for map values too
