@@ -53,16 +53,16 @@
 
 (section entities "entities"
   (code :entities :full)
-  (code :rel :full)
   [:p "Entities map one to one with tables and are the initial building block for all your
       queries."])
 
 (section select "select queries"
-  (code :selects :full)
-  (code :where :full)
-  (code :with :full)
-  (code :select-fn :full)
-  [:p "woot"])
+  [:div
+    (code :selects :full)
+    [:p "woot"]]
+  [:div
+    (code :where :full)
+    [:p "woot"]])
 
 (section update "update queries"
          (code :update :full)

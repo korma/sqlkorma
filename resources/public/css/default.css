@@ -55,7 +55,8 @@ code { color: #b05b01; font-size:14px; font-family:"Monaco", "Consolas", "Courie
 #docBubble h3 { margin-bottom: 5px; }
 #docBubble ul { float:left; display:inline; width:100% }
 #docBubble li { float:left; display:inline; width:100%; margin-bottom:70px;}
-#docBubble div { width: 440px; font-size:18px; padding-top:80px; }
+#docBubble div { float:left; display:inline; width:100%;}
+#docBubble div + div { margin-top:20px; }
 #docBubble p + p { margin-top: 20px; }
 #docBubble code { float:right; display:inline; width:436px; margin-bottom:20px; margin-right:25px;}
 #docBubble code + code { margin-top:20px; }
