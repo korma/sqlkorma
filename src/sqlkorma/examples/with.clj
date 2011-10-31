@@ -10,5 +10,3 @@
 (select users
   (with address)
   (with email))
-
-

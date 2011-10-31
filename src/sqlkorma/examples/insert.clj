@@ -7,7 +7,6 @@
   (values [{:first "john" :last "doe"}
            {:first "jane" :last "doe"}]))
 
-
 ;;You can also compose inserts:
 (def base (-> (insert* users)
             (values {:first "john" :last "doe"})))
