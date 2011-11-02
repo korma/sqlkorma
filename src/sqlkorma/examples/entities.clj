@@ -14,6 +14,7 @@
       ;; assumes users.id = address.users_id
       ;; but gets the results in a second query
       ;; for each element
-  (belongs-to account))
+  (belongs-to account)
       ;; assumes users.account_id = account.id
-
+  (has-one email {:fk :emailID}))
+      ;; you can optionally specify the foreign key

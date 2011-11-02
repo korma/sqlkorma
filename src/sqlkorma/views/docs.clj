@@ -54,7 +54,14 @@
 (section entities "entities"
   (code :entities :full)
   [:p "Entities map one to one with tables and are the initial building block for all your
-      queries."])
+      queries. You have the ability to specify a number of properties associated with them,
+      such as the table name, an alias for the table, the primary key and so on. You can
+      also specify functions to be run before a record goes to the database as the result of
+      an insert/update, or functions to be mapped over the results of a select. This allows you
+      to apply common mutations to your data without having to think about them at every step."]
+  [:p "Entities also allow you to specify the relationships to be used when you do select queries.
+      With these relationships defined, you can then simply use the (" [:em "with"] ") function in
+      your select query to join the entities and return the results."])
 
 (section select "select queries"
   [:div
@@ -66,23 +73,28 @@
 
 (section update "update queries"
          (code :update :full)
-  [:p "woot"])
+  [:p "Update queries use the (" [:em "set-fields"] ") function to specifiy the fields to be
+      updated. Multiple calls to set-fields will be merged together, allowing you to build
+      the update over time. Updates also allow where clauses as you would expect."])
 
 (section insert "insert queries"
          (code :insert :full)
-  [:p "woot"])
+  [:p "Insert queries use the function (" [:em "values"] ") to add records. It takes either
+      a single map or a collection of maps and returns the id of the first inserted record."])
 
 (section delete "delete queries"
          (code :delete :full)
-  [:p "woot"])
+  [:p "Delete queries only allow where clauses and not including one will cause all
+      records for the given entity to be deleted. The result of a delete is the 
+      id of the first record deleted."])
 
 (section misc "misc"
          (code :execmodes :full)
-  [:p "Korma has the notion of execution modes. By default, when exec is called, it simply
-      generates the SQL string and params necessary for your query and sends those to your
-      database. Sometimes, however, what you really want is to just generate the string,
-      or even do a dry run where you see the SQL printed to the console.
-      Exec modes allow you to do exactly that."])
+  [:p "By default, when exec is called, it simply generates the SQL string and params 
+      necessary for your query and sends those to your database. Sometimes, however, what 
+      you really want is to just generate the string, or even do a dry run where you see 
+      the SQL printed to the console. As such, korma includes a couple of other execution
+      modes that allow you to do exactly that."])
 
 ;;************************************************
 ;; pages 

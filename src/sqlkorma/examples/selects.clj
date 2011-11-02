@@ -2,6 +2,7 @@
   (with address) ;; include other entities based on
                  ;; their relationship
   (fields :first :last :address.state)
+      ;; you can alias a field using a vector of [field alias]
   (where {:first "john"
           :last [like "doe"]}) 
   (order :id :ASC)

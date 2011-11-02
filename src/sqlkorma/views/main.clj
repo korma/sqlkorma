@@ -9,12 +9,16 @@
                   This allows you to construct queries over time and in virtually
                   any way you can dream of."
             :code (example/get :composable)}
-           {:title "Composable from the ground up."
-            :body "All the parts of a query in Korma can be composed at will.
-                  This allows you to construct queries over time and in virtually
-                  any way you can dream of."
-            :code (example/get :intro)}
-           
+           {:title "Take the pain out of relations."
+            :body "Korma entities handles relationships for you. Just specify
+                  what kind of relationship it is and all the joining will be
+                  done for you."
+            :code (example/get :rel)}
+           {:title "Built for the real world."
+            :body "Real projects are never simple. As such, Korma was designed with
+                  flexibility in mind. Couple that with fast query generation
+                  and you have a library meant to play in the big leagues."
+            :code (example/get :realworld)}
            ])
 
 (defpartial overview-row [{:keys [title body code]}]
