@@ -54,22 +54,38 @@
 (section entities "entities"
   (code :entities :full)
   [:p "Entities map one to one with tables and are the initial building block for all your
-      queries. You have the ability to specify a number of properties associated with them,
+      queries. You can specify a number of properties associated with them,
       such as the table name, an alias for the table, the primary key and so on. You can
-      also specify functions to be run before a record goes to the database as the result of
+      also set functions to be run before a record goes to the database as the result of
       an insert/update, or functions to be mapped over the results of a select. This allows you
-      to apply common mutations to your data without having to think about them at every step."]
-  [:p "Entities also allow you to specify the relationships to be used when you do select queries.
+      to apply common mutations to your data without having to think about it at every step."]
+  [:p "Lastly, entities let you specify the relationships to be used when you do select queries.
       With these relationships defined, you can then simply use the (" [:em "with"] ") function in
       your select query to join the entities and return the results."])
 
 (section select "select queries"
   [:div
     (code :selects :full)
-    [:p "woot"]]
+    [:p "Select queries are the most interesting of the query types and have a number of tools
+        to help make them simple. As discussed in the entities section, you can use the (" [:em "with"] 
+        ") function to include a relation. If you do so, you'll also want to specify the exact fields
+        to be returned in the query using the (" [:em "fields"] ") function, which takes a variable
+        number of keywords representing the field names you want. Note that any fields without a table
+        prefix are assumed to be for the current entity."]
+   [:p "We'll go more in depth about where clauses below, but as you can see, you have access to all
+       the other parts of a select that you'd expect: grouping, ordering, limits, and offsets. group
+       and order clauses will be evaluated in the order they're added to the query. The default ordering
+       direction is DESC."]]
   [:div
     (code :where :full)
-    [:p "woot"]])
+    [:p "Where clauses are sort of their own mini-DSL. Anywhere you would provide a clause,
+        you can use a map where each key in the map represents a field and each value is its
+        value. Just like with the fields function, keys specified without a table prefix will
+        be prefixed for the current entity. Also, a field's value can be a vector specifying 
+        a different comparison function to be used. Each clause that results from a map will 
+        be AND'd together."]
+   [:p "You can also call the where predicates like any normal function, allowing you to compose
+       your predicate clauses as if they were standard Clojure code."]])
 
 (section update "update queries"
          (code :update :full)
@@ -94,7 +110,8 @@
       necessary for your query and sends those to your database. Sometimes, however, what 
       you really want is to just generate the string, or even do a dry run where you see 
       the SQL printed to the console. As such, korma includes a couple of other execution
-      modes that allow you to do exactly that."])
+      modes that allow you to do exactly that. These also apply to queries that are composed
+      over time and then executed using the (" [:em "exec"] ") function."])
 
 ;;************************************************
 ;; pages 

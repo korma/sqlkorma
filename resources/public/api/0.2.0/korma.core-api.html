@@ -53,6 +53,8 @@ namespace.
   <div style="margin-left: 1em;" class="toc-section">
     <a href="#toc0">Overview</a>
     <div style="margin-left: 1em;" class="toc-entry">
+      <a href="#korma.core/aggregate">aggregate</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
       <a href="#korma.core/as-sql">as-sql</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
       <a href="#korma.core/belongs-to">belongs-to</a>
@@ -60,6 +62,8 @@ namespace.
       <a href="#korma.core/create-entity">create-entity</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
       <a href="#korma.core/create-relation">create-relation</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#korma.core/database">database</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
       <a href="#korma.core/defentity">defentity</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
@@ -76,6 +80,8 @@ namespace.
       <a href="#korma.core/exec-raw">exec-raw</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
       <a href="#korma.core/fields">fields</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#korma.core/group">group</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
       <a href="#korma.core/has-many">has-many</a>
     </div><div style="margin-left: 1em;" class="toc-entry">
@@ -145,6 +151,23 @@ namespace.
 <div id="var-entry">
   <br />
   <hr />
+  <h2 id="korma.core/aggregate">aggregate</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (aggregate query agg alias &amp; [group-by])
+</pre>
+  <pre id="var-docstr">Use a SQL aggregator function, aliasing the results, and optionally grouping by
+a field:
+
+(select users 
+  (aggregate (count :*) :cnt :status))
+
+Aggregates available: count, sum, avg, min, max, first, last</pre>
+  
+  
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
   <h2 id="korma.core/as-sql">as-sql</h2>
   <span id="var-type">function</span><br />
   <pre id="var-usage">Usage: (as-sql query)
@@ -160,7 +183,11 @@ namespace.
   <span id="var-type">function</span><br />
   <pre id="var-usage">Usage: (belongs-to ent sub-ent &amp; [opts])
 </pre>
-  <pre id="var-docstr">Add a belongs-to relationship for the given entity.</pre>
+  <pre id="var-docstr">Add a belongs-to relationship for the given entity. It is assumed that the foreign key
+is on the current entity with the format sub-ent-table_id: email.user_id = user.id.
+Opts can include a key for :fk to explicitly set the foreign key.
+
+(belongs-to users email {:fk :emailID})</pre>
   
   
   
@@ -183,6 +210,17 @@ namespace.
   <pre id="var-usage">Usage: (create-relation ent sub-ent type opts)
 </pre>
   <pre id="var-docstr">Create a relation map describing how two entities are related.</pre>
+  
+  
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="korma.core/database">database</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (database ent db)
+</pre>
+  <pre id="var-docstr">Set the database connection to be used for this entity.</pre>
   
   
   
@@ -282,7 +320,21 @@ provide the connection to execute against as the first parameter.
   <span id="var-type">function</span><br />
   <pre id="var-usage">Usage: (fields query &amp; vs)
 </pre>
-  <pre id="var-docstr">Set the fields to be selected in a query.</pre>
+  <pre id="var-docstr">Set the fields to be selected in a query. Fields can either be a keyword
+or a vector of two keywords [field alias]:
+
+(fields query :name [:firstname :first])</pre>
+  
+  
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="korma.core/group">group</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (group query field)
+</pre>
+  <pre id="var-docstr">Add a group-by clause to a select query</pre>
   
   
   
@@ -294,9 +346,10 @@ provide the connection to execute against as the first parameter.
   <pre id="var-usage">Usage: (has-many ent sub-ent &amp; [opts])
 </pre>
   <pre id="var-docstr">Add a has-many relation for the given entity. It is assumed that the foreign key
-is on the sub-entity with the format table_id:
+is on the sub-entity with the format table_id: user.id = email.user_id
+Opts can include a key for :fk to explicitly set the foreign key.
 
-user.id = email.user_id</pre>
+(has-many users email {:fk :emailID})</pre>
   
   
   
@@ -307,7 +360,11 @@ user.id = email.user_id</pre>
   <span id="var-type">function</span><br />
   <pre id="var-usage">Usage: (has-one ent sub-ent &amp; [opts])
 </pre>
-  <pre id="var-docstr">Add a has-one relationship for the given entity.</pre>
+  <pre id="var-docstr">Add a has-one relationship for the given entity. It is assumed that the foreign key
+is on the sub-entity with the format table_id: user.id = address.user_id
+Opts can include a key for :fk to explicitly set the foreign key.
+
+(has-one users address {:fk :addressID})</pre>
   
   
   
@@ -319,7 +376,8 @@ user.id = email.user_id</pre>
   <pre id="var-usage">Usage: (insert ent &amp; body)
 </pre>
   <pre id="var-docstr">Creates an insert query, applies any modifying functions in the body and then
-executes it. `ent` is either a string or an entity created by defentity.
+executes it. `ent` is either a string or an entity created by defentity. Inserts
+return the last inserted id.
 
 ex: (insert user 
       (values [{:name "chris"} {:name "john"}]))</pre>
@@ -575,7 +633,7 @@ will be AND'ed to the other clauses.</pre>
   <hr />
   <h2 id="korma.core/with">with</h2>
   <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (with query ent)
+  <pre id="var-usage">Usage: (with query &amp; ents)
 </pre>
   <pre id="var-docstr">Add a related entity to the given select query. If the entity has a relationship
 type of :belongs-to or :has-one, the requested fields will be returned directly in

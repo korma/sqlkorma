@@ -18,8 +18,7 @@
             :body "Real projects are never simple. As such, Korma was designed with
                   flexibility in mind. Couple that with fast query generation
                   and you have a library meant to play in the big leagues."
-            :code (example/get :realworld)}
-           ])
+            :code (example/get :realworld)}])
 
 (defpartial overview-row [{:keys [title body code]}]
   [:li

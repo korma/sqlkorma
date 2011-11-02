@@ -6,8 +6,8 @@
 (def examples (atom {}))
 
 (def korma-vars ["defdb" "postgres" "mssql" "mysql" "oracle"
-                 "defentity" "has-one" "has-many" "belongs-to" "transform" "prepare" "entity-fields" "table" "pk"
-                 "select" "select\\*" "where" "fields" "with" "order" "limit" "offset" "join" "values" "update" "insert" "delete" "update\\*" "delete\\*" "insert\\*" "set-fields" "aggregate"
+                 "defentity" "has-one" "has-many" "belongs-to" "transform" "prepare" "entity-fields" "table" "pk" "database"
+                 "select" "select\\*" "where" "fields" "with" "order" "limit" "offset" "join" "values" "update" "insert" "delete" "update\\*" "delete\\*" "insert\\*" "set-fields" "aggregate" "group"
                  "like" "and" "or" "=" ">=" ">" "<" "<=" "not" "not=" "in" "count" "sum" "avg"
                  "exec" "sql-only" "dry-run"])
 

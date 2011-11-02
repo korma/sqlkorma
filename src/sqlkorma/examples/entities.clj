@@ -2,6 +2,8 @@
   (pk :my_pk) ;; By default "id"
   (table :k_users) ;; By default the name of the symbol
   (entity-fields :first :last) ;; Default fields for selects
+  (database prod) ;; if none is specified the last defdb
+                  ;; will be used
 
   ;; mutations
   (prepare ..) ;; apply a function before storing in the db

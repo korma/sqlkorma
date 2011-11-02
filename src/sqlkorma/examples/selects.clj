@@ -3,9 +3,14 @@
                  ;; their relationship
   (fields :first :last :address.state)
       ;; you can alias a field using a vector of [field alias]
+  (aggregate (count :*) :cnt :status) 
+      ;; You specify alias and optionally a field to group by
+      ;; available aggregates:
+      ;; sum, first, last, min, max, avg, count
   (where {:first "john"
           :last [like "doe"]}) 
   (order :id :ASC)
+  (group :status)
   (limit 3)
   (offset 3))
 
