@@ -70,8 +70,10 @@
         to help make them simple. As discussed in the entities section, you can use the (" [:em "with"] 
         ") function to include a relation. If you do so, you'll also want to specify the exact fields
         to be returned in the query using the (" [:em "fields"] ") function, which takes a variable
-        number of keywords representing the field names you want. Note that any fields without a table
-        prefix are assumed to be for the current entity."]
+        number of keywords representing the field names you want. Likewise, you can use the (" [:em "aggregate"]
+        ") function to call one of SQL's aggregators by specifying the function, an alias, and optionally
+        a field to group by. One thing to note in all of this is that fields are always keywords and
+        any without a table prefix are assumed to be for the current entity unless they're aliased."]
    [:p "We'll go more in depth about where clauses below, but as you can see, you have access to all
        the other parts of a select that you'd expect: grouping, ordering, limits, and offsets. group
        and order clauses will be evaluated in the order they're added to the query. The default ordering
@@ -85,7 +87,8 @@
         a different comparison function to be used. Each clause that results from a map will 
         be AND'd together."]
    [:p "You can also call the where predicates like any normal function, allowing you to compose
-       your predicate clauses as if they were standard Clojure code."]])
+       your predicate clauses as if they were standard Clojure code. Fields in Korma are always
+       specified as keywords and will be prefixed appropriately."]])
 
 (section update "update queries"
          (code :update :full)
