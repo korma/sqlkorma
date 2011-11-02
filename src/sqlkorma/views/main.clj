@@ -28,7 +28,6 @@
       [:code [:pre code]]])
 
 (defpage "/" []
-  (example/init)
   (common/layout
     [:div#intro
     [:code [:pre (example/get :intro)]]

@@ -121,7 +121,6 @@
 ;;************************************************
 
 (defpage "/docs" []
-         (example/init)
   (common/layout
     [:ul#docLinks
      (section-links)

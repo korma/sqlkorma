@@ -7,6 +7,7 @@
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
         port (Integer. (get (System/getenv) "PORT" "8091"))]
+    (examples/init)
     (server/start port {:mode mode
                         :ns 'sqlkorma})))
 
