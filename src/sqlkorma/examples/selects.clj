@@ -1,14 +1,17 @@
 (select users
   (with address) ;; include other entities based on
                  ;; their relationship
-  (fields :first :last :address.state)
+  (fields [:firstname :first] :last :address.state)
       ;; you can alias a field using a vector of [field alias]
   (aggregate (count :*) :cnt :status) 
       ;; You specify alias and optionally a field to group by
       ;; available aggregates:
       ;; sum, first, last, min, max, avg, count
   (where {:first "john"
-          :last [like "doe"]}) 
+          :last [like "doe"]
+          :date_joined [<= (sqlfn now)]})
+      ;; You can use an abritrary sql function by calling
+      ;; ( sqlfn fn-name & params)
   (order :id :ASC)
   (group :status)
   (limit 3)

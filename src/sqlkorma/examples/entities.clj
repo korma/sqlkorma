@@ -1,3 +1,5 @@
+(use 'korma.core)
+
 (defentity users
   (pk :my_pk) ;; By default "id"
   (table :k_users) ;; By default the name of the symbol

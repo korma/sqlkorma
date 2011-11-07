@@ -1,5 +1,6 @@
 (ns sqlkorma.views.docs
   (:require [sqlkorma.views.common :as common]
+            [noir.options :as options]
             [sqlkorma.models.examples :as example])
   (:use [noir.core :only [defpage defpartial]]
         [hiccup.core :only [html]]
@@ -39,6 +40,9 @@
 ;;************************************************
 ;; sections
 ;;************************************************
+
+(section start "Getting started"
+  (code :gettingstarted :span))
 
 (section db "db"
   (code :db-intro :full)
@@ -121,6 +125,8 @@
 ;;************************************************
 
 (defpage "/docs" []
+  (when (options/dev-mode?)
+    (example/init))
   (common/layout
     [:ul#docLinks
      (section-links)
