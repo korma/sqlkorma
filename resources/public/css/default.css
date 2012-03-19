@@ -13,7 +13,7 @@ em { color: #ffbe00; }
 em2 { color: #ff9700; }
 em3 { color: #ff5500; }
 em4 { color: #774444; }
-code { overflow:scroll; color: #b05b01; font-size:14px; font-family:"Monaco", "Consolas", "Courier New", monospace; width: 386px; padding:20px; background: #310d11; border:2px solid #512e0b; border-radius:15px;}
+code { overflow:auto; color: #b05b01; font-size:14px; font-family:"Monaco", "Consolas", "Courier New", monospace; width: 386px; padding:20px; background: #310d11; border:2px solid #512e0b; border-radius:15px;}
 
 #wrapper {width:1000px; margin:0 auto; }
 
