@@ -1,10 +1,10 @@
 (defdb prod (postgres {:db "korma"
-                       :username "db"
+                       :user "db"
                        :password "dbpass"}))
 
 (defentity address)
 (defentity user
-  (has-many address))
+  (has-one address))
 
 (select user
   (with address)

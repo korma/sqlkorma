@@ -11,13 +11,9 @@
   (fields :name)
   (where {:date_joined [>= today]}))
 
+(select users
+  (fields [(sqlfn avg (sqlfn sum 3 4)) :cool]))
 
-
-
-(def constraints [[:userid 1 '=] [:carid 34 '<]]) 
-(def constraint-map (reduce (fn [result [field value op]]
-                              (assoc result field [op value]))
-                            {}
-                            constraints))
-(select mytable
-  (where constraint-map))
+(select users
+  (where (and (> 3 :id)
+              (> 2 :soidf))))
