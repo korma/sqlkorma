@@ -10,4 +10,4 @@
 (-> base
   (set-fields {:beta false})
   (where {:last-login [> yesterday]})
-  (exec))
+  (update))

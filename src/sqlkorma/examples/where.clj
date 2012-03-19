@@ -20,4 +20,4 @@
            (like :last "doe")))
 
 ;;Available predicates:
-[=, like, and, or, >, <, >=, <=, in, not, not=]
+[=, like, and, or, >, <, >=, <=, in, not-in, not, not=]

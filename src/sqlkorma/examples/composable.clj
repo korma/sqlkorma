@@ -9,4 +9,4 @@
 (def constrained (-> ordered-and-active
                    (limit 20)))
 
-(exec constrained)
+(select constrained)

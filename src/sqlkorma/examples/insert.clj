@@ -13,4 +13,4 @@
 
 (-> base
   (values {:first "jane" :last "doe"})
-  (exec))
+  (insert))

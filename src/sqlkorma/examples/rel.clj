@@ -3,10 +3,12 @@
 (defentity account)
 
 (defentity users
-  (has-one email) 
-  (has-many address) 
+  (has-one email)
+  (has-many address)
   (belongs-to account))
 
 (select users
   (fields :email.email :address.state :account.name)
-  (with email address account))
+  (with email)
+  (with address)
+  (with account))

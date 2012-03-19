@@ -12,9 +12,9 @@
   (transform ..) ;; apply a function to all select results
 
   ;;Relationships
-  (has-one email) 
+  (has-one email)
       ;; assumes users.id = email.users_id
-  (has-many address) 
+  (has-many address)
       ;; assumes users.id = address.users_id
       ;; but gets the results in a second query
       ;; for each element
@@ -22,3 +22,9 @@
       ;; assumes users.account_id = account.id
   (has-one email {:fk :emailID}))
       ;; you can optionally specify the foreign key
+
+;;Subselects can be used as entities too!
+(defentity subselect-example
+  (table (subselect users
+            (where {:active true}))
+         :activeUsers))

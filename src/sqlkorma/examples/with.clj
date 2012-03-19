@@ -1,19 +1,12 @@
 (select users
- (with emails ;;has-many
-   (fields :email)
-   (where {:emails [like "%_test%"]}))
- (fields :name))
+ (fields :name)
+ (with emails
+   (fields :email) ;; the context is now email.*
+   (where {:email [like "%_test%"]})))
 
 (select users
-  (with addresses ;;has-many
-    (with state (fields :state))
-    (fields :city :zip :address1 :address2))
   (fields :name)
-  (where {:date_joined [>= today]}))
-
-(select users
-  (fields [(sqlfn avg (sqlfn sum 3 4)) :cool]))
-
-(select users
-  (where (and (> 3 :id)
-              (> 2 :soidf))))
+  (where {:date_joined [>= today]})
+  (with addresses
+    (with state (fields :state)) ;; you can nest withs
+    (fields :city :zip :address1 :address2)))
