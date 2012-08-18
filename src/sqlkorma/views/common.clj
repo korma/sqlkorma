@@ -31,7 +31,7 @@
              [:ul
               [:li (link-to "http://groups.google.com/group/sqlkorma" "MailingList")]
               [:li (link-to "/docs" "Docs")]
-              [:li (link-to "http://github.com/ibdknox/korma" "Source")]]])
+              [:li (link-to "https://github.com/korma/Korma" "Source")]]])
 
 (defpartial layout [& content]
             (html5
