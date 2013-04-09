@@ -1,12 +1,12 @@
 (select users
- (fields :name)
- (with emails
+ (fields :first)
+ (with email
    (fields :email) ;; the context is now email.*
    (where {:email [like "%_test%"]})))
 
 (select users
-  (fields :name)
-  (where {:date_joined [>= today]})
-  (with addresses
+  (fields :first)
+  (where {:last [like "doe"]})
+  (with address
     (with state (fields :state)) ;; you can nest withs
     (fields :city :zip :address1 :address2)))

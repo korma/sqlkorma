@@ -1,13 +1,14 @@
 (update users
   (set-fields {:status "active"
                :beta false})
-  (where {:last_login [> yesterday]}))
+  (where {:visits [> 10]}))
 
-;;You can also compose updates over time:
+;; You can also compose updates over time:
 (def base (-> (update* users)
-            (set-fields {:status "active"})))
+              (set-fields {:status "active"})))
 
 (-> base
-  (set-fields {:beta false})
-  (where {:last-login [> yesterday]})
-  (update))
+    (set-fields {:beta false})
+    (where {:visits [> 10]})
+    (update))
+;; Does the same thing 
