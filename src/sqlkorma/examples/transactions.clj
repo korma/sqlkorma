@@ -1,9 +1,9 @@
 ;;transaction, rollback, and is-rollback? are in korma.db
 (transaction
   (insert users
-    (values {:name "cool"}))
+    (values {:first "cool"}))
   (insert address
-    (values {:username "cool"})))
+    (values {:address1 "cool"})))
 
 (transaction
   (if-not (valid?)
