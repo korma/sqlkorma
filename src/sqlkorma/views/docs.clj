@@ -57,6 +57,11 @@
 
 (section entities "entities"
   (code :entities :full)
+  [:p "Let's suppose that we have some tables in a database. We have an users table with some
+       user data. The user has many emails. It also has one address. It belong to an account.
+       It has a many to many relationship with posts. Email, address, account, posts are all
+       different tables. We also have a table with states that has a relationship with address.
+       And one last table users_posts to store the many to many relationship."]
   [:p "Entities map one to one with tables and are the initial building block for all your
       queries. You can specify a number of properties associated with them,
       such as the table name, an alias for the table, the primary key and so on. You can
@@ -66,9 +71,13 @@
   [:p "Lastly, entities let you specify the relationships to be used when you do select queries.
       With these relationships defined, you can then simply use the (" [:em "with"] ") function in
       your select query to join the entities and return the results."]
-  [:p "Entities offer a great deal of flexibility. The final example shown here demonstrates how
+  [:p "Entities offer a great deal of flexibility. The second example shown here demonstrates how
       you can even use subselects as entities, enabling you to join on these seamlessly within your
-      normal queries."])
+      normal queries."]
+  [:p "You need to create entities for each table that participate in a relationship. Remember
+       that when the primary key is not \"id\", the table name is not the name of the entity
+       defined or the foreign key is not in the format \"tablename_id\" you have to define
+       them in the entity." ])
 
 (section select "select queries"
   [:div
@@ -77,33 +86,47 @@
         to help make them simple. As discussed in the entities section, you can use the (" [:em "with"] 
         ") function to include a relation. If you do so, you'll also want to specify the exact fields
         to be returned in the query using the (" [:em "fields"] ") function, which takes a variable
-        number of keywords representing the field names you want. Likewise, you can use the (" [:em "aggregate"]
+        number of keywords representing the field names you want. The (" [:em "modifier"] ") function
+        add a modifier to the beginning of a query. Likewise, you can use the (" [:em "aggregate"]
         ") function to call one of SQL's aggregators by specifying the function, an alias, and optionally
         a field to group by. One thing to note in all of this is that fields are always keywords and
         any without a table prefix are assumed to be for the current entity unless they're aliased."]
-   [:p "We'll go more in depth about where clauses below, but as you can see, you have access to all
-       the other parts of a select that you'd expect: subselects, joins, grouping, ordering, limits, and offsets. 
+   [:p "We'll go more in depth about (" [:em "where"] ") and (" [:em "having"] ")
+        clauses below, but as you can see, you have access to all
+        the other parts of a select that you'd expect: (" [:em "subselect"] "), (" [:em "join"] "),
+        (" [:em "group"] "), (" [:em "order"] "), (" [:em "limit"] "), and (" [:em "offset"] "). 
        Subselects work just like a select clause does, but they can be embedded anywhere in your query. Joins allow
        you to manually control how related tables a brought together by taking a standard where predicate. Group 
        and order clauses will be evaluated in the order they're added to the query. The default ordering
        direction is ASC."]]
   [:div
     (code :where :full)
-    [:p "Where clauses are sort of their own mini-DSL. Anywhere you would provide a clause,
+    [:p "(" [:em "where"] ") and (" [:em "having"] ") clauses are sort of their own mini-DSL.
+        Anywhere you would provide a clause,
         you can use a map where each key in the map represents a field and each value is its
         value. Just like with the fields function, keys specified without a table prefix will
         be prefixed for the current entity. Also, a field's value can be a vector specifying
         a different comparison function to be used. Each clause that results from a map will
         be AND'd together."]
-   [:p "You can also call the where predicates like any normal function, allowing you to compose
-       your predicate clauses as if they were standard Clojure code. Fields in Korma are always
-       specified as keywords and will be prefixed appropriately."]]
+   [:p "You can also call the (" [:em "where"] ") and (" [:em "having"] ") predicates like any
+        normal function, allowing you to compose
+        your predicate clauses as if they were standard Clojure code. Fields in Korma are always
+        specified as keywords and will be prefixed appropriately."]
+   [:p "The examples here use the (" [:em "where"] ") clause, but it's the same for the
+        (" [:em "having"] ") clause."]]
   [:div
     (code :with :full)
    [:p "With clauses act almost like selects, in that they can actually be further refined
        using all the standard functions you would use in a select. This allows for a great
        deal of flexibility when describing your relations."
     ]])
+
+(section set "set operations"
+         (code :set :full)
+  [:p "Set operations include union, union-all and intersect operations. You can use the
+       (" [:em "queries"] ") function to add groups of queries to the operation."]
+  [:p "You can't use (" [:em "select"] ") inside (" [:em "queries"] "), you have to use the
+       (" [:em "subselect"] ") macro."])
 
 (section update "update queries"
          (code :update :full)
@@ -133,7 +156,7 @@
               over time and then executed using the (" [:em "exec"] ") function."]]
          [:div
           (code :transactions :full)
-          [:p "You can do transactions in Korma simply by using the (" [:em "transaction"] " ..) macro,
+          [:p "You can do transactions in Korma simply by using the (" [:em "transaction"] ") macro,
               which ensures that all queries executed within it are part of a single transaction. You
               can then use the (" [:em "rollback"] ") function to force the transaction to rollback if necessary."]]
          [:div
@@ -153,7 +176,7 @@
   (common/layout
     [:ul#docLinks
      (section-links)
-     [:li#api (link-to "/api/0.3.0/index.html" "API")]]
+     [:li#api (link-to "http://korma.github.io/Korma/" "API")]]
     (sections)))
 
 
