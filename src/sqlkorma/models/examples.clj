@@ -5,13 +5,20 @@
 
 (def examples (atom {}))
 
-(def korma-vars ["defdb" "postgres" "mssql" "mysql" "oracle" "korma" "postgresql" "sqlite3" "transaction" "rollback" "is-rollback\\?"
-                 "defentity" "has-one" "has-many" "belongs-to" "transform" "prepare" "entity-fields" "table" "pk" "database"
-                 "select" "select\\*" "where" "fields" "with" "order" "limit" "offset" "join" "values" "update" "insert" "delete" "update\\*" "delete\\*" "insert\\*" "set-fields" "aggregate" "group" "sqlfn" "subselect"
-                 "like" "and" "or" "=" ">=" ">" "<" "<=" "not" "not-in" "not=" "in" "count" "sum" "avg"
-                 "exec" "sql-only" "dry-run" "exec-raw" "raw"])
+(def korma-vars
+  ["defdb" "postgres" "mssql" "mysql" "oracle" "korma" "postgresql" "sqlite3"
+   "transaction" "rollback" "is-rollback\\?" "defentity" "has-one" "has-many"
+   "belongs-to" "transform" "prepare" "entity-fields" "table" "pk" "database"
+   "select" "select\\*" "where" "fields" "with" "order" "limit" "offset"
+   "join" "values" "update" "insert" "delete" "update\\*" "delete\\*"
+   "insert\\*" "set-fields" "aggregate" "group" "sqlfn" "subselect" "like"
+   "and" "or" "=" ">=" ">" "<" "<=" "not" "not-in" "not=" "in" "count" "sum"
+   "avg" "exec" "sql-only" "dry-run" "exec-raw" "raw" "as-sql" "union"
+   "union\\*" "union-all" "union-all\\*" "intersect" "intersect\\*" "queries"
+   "having" "having\\*" "where\\*" "modifier" "many-to-many" "msaccess" "h2"])
 
-(def clojure-vars ["def" "->" "defn" "use" "require" "ns" "if-not" "when-not" "println"])
+(def clojure-vars ["def" "->" "defn" "use" "require" "ns" "if-not" "when-not"
+                   "println" "declare"])
 (def keywords ["(:[a-zA-Z_><\\.#\\-]+?)"])
 (def comments [#";;.*"])
 
