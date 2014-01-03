@@ -57,8 +57,8 @@
 
 (section entities "entities"
   (code :entities :full)
-  [:p "Let's suppose that we have some tables in a database. We have an users table with some
-       user data. The user has many emails. It also has one address. It belong to an account.
+  [:p "Let's suppose that we have some tables in a database. We have a users table with some
+       user data. The user has many emails. It also has one address. It belongs to an account.
        It has a many to many relationship with posts. Email, address, account, posts are all
        different tables. We also have a table with states that has a relationship with address.
        And one last table users_posts to store the many to many relationship."]
