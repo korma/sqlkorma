@@ -8,4 +8,4 @@
 ;; Example for h2:
 [com.h2database/h2 "1.3.170"]
 ;; Example for sqlite:
-[org.xerial/sqlite-jdbc "3.7.2"]
+[org.xerial/sqlite-jdbc "3.7.15-M1"]
