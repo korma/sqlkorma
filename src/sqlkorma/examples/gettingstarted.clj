@@ -1,5 +1,5 @@
 ;; First you'll need to add Korma as a dependency in your lein/cake project:
-[korma "0.3.0-RC5"]
+[korma "0.3.0"]
 
 ;; You'll also need the JDBC driver for your database. These are easy to find if 
 ;; you search for "my-db jdbc driver maven".
