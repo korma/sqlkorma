@@ -37,8 +37,8 @@
   (belongs-to account)
       ;; assumes users.account_id = account.id
   (many-to-many posts :users_posts))
-      ;; assumes a table users_posts with columns user_id
-      ;; and post_id
+      ;; assumes a table users_posts with columns users_id
+      ;; and posts_id
       ;; like has-many, also gets the results in a second
       ;; query for each element
 
