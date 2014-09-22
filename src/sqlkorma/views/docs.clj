@@ -87,7 +87,7 @@
         ") function to include a relation. If you do so, you'll also want to specify the exact fields
         to be returned in the query using the (" [:em "fields"] ") function, which takes a variable
         number of keywords representing the field names you want. The (" [:em "modifier"] ") function
-        add a modifier to the beginning of a query. Likewise, you can use the (" [:em "aggregate"]
+        adds a modifier to the beginning of a query. Likewise, you can use the (" [:em "aggregate"]
         ") function to call one of SQL's aggregators by specifying the function, an alias, and optionally
         a field to group by. One thing to note in all of this is that fields are always keywords and
         any without a table prefix are assumed to be for the current entity unless they're aliased."]

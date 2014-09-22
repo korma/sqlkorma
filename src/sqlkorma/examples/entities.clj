@@ -5,13 +5,17 @@
 
 (defentity users
   ;; Basic configuration
-  (pk :id) ;; by default "id". This line is unnecessary.
-           ;; it's used for relationships joins.
-  (table :users) ;; by default the name of the symbol.
-                 ;; The line above is also unecessary.
-  (database db) ;; if none is specified the last defdb
-                ;; will be used. Also unnecessary.
-  (entity-fields :first :last) ;; default fields for selects
+  (pk :id) ;; Optional. Defaults to "id".
+           ;; Used for relationships joins.
+  (table :users) ;; Optional. Defaults to the name of the symbol.
+  (database db) ;; Optional. Defaults to the last defdb.
+  (entity-fields :first :last) ;; Optional. default fields for
+                               ;; selects. If the select query contains
+                               ;; a (fields ...) section referencing
+                               ;; columns from this entity, the query
+                               ;; will return those fields *in addition*
+                               ;; to the ones specified in
+                               ;; defentity/entity-fields
 
   ;; Mutations
   (prepare (fn [{last :last :as v}]
