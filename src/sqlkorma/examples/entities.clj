@@ -9,7 +9,13 @@
            ;; Used for relationships joins.
   (table :users) ;; Optional. Defaults to the name of the symbol.
   (database db) ;; Optional. Defaults to the last defdb.
-  (entity-fields :first :last) ;; default fields for selects
+  (entity-fields :first :last) ;; Optional. default fields for
+                               ;; selects. If the select query contains
+                               ;; a (fields ...) section referencing
+                               ;; columns from this entity, the query
+                               ;; will return those fields *in addition*
+                               ;; to the ones specified in
+                               ;; defentity/entity-fields
 
   ;; Mutations
   (prepare (fn [{last :last :as v}]
