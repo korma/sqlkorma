@@ -48,11 +48,11 @@
   (code :db-intro :full)
   [:p "To define a connection to a database you use the (" [:em "defdb"] ") macro, which takes a map
       of database parameters. Those familiar with clojure.java.jdbc will notice this is the
-      same connection map you would use there. To speed things up a bit, Korma provides a set of 
+      same connection map you would use there. To speed things up a bit, Korma provides a set of
       convenience functions for common database specs."]
   [:p "(" [:em "defdb"] ") creates a connection pool for your db spec (using the
       wonderful c3p0 library) to make sure resources are used efficiently. It also sets the last
-      created pool as the default for all queries. As such, connection management is essentially 
+      created pool as the default for all queries. As such, connection management is essentially
       taken care of for you."])
 
 (section entities "entities"
@@ -83,7 +83,7 @@
   [:div
     (code :selects :full)
     [:p "Select queries are the most interesting of the query types and have a number of tools
-        to help make them simple. As discussed in the entities section, you can use the (" [:em "with"] 
+        to help make them simple. As discussed in the entities section, you can use the (" [:em "with"]
         ") function to include a relation. If you do so, you'll also want to specify the exact fields
         to be returned in the query using the (" [:em "fields"] ") function, which takes a variable
         number of keywords representing the field names you want. The (" [:em "modifier"] ") function
@@ -94,9 +94,9 @@
    [:p "We'll go more in depth about (" [:em "where"] ") and (" [:em "having"] ")
         clauses below, but as you can see, you have access to all
         the other parts of a select that you'd expect: (" [:em "subselect"] "), (" [:em "join"] "),
-        (" [:em "group"] "), (" [:em "order"] "), (" [:em "limit"] "), and (" [:em "offset"] "). 
+        (" [:em "group"] "), (" [:em "order"] "), (" [:em "limit"] "), and (" [:em "offset"] ").
        Subselects work just like a select clause does, but they can be embedded anywhere in your query. Joins allow
-       you to manually control how related tables a brought together by taking a standard where predicate. Group 
+       you to manually control how related tables a brought together by taking a standard where predicate. Group
        and order clauses will be evaluated in the order they're added to the query. The default ordering
        direction is ASC."]]
   [:div
@@ -142,18 +142,24 @@
 (section delete "delete queries"
          (code :delete :full)
   [:p "Delete queries only allow where clauses and not including one will cause all
-      records for the given entity to be deleted. The result of a delete is the 
+      records for the given entity to be deleted. The result of a delete is the
       id of the first record deleted."])
 
 (section misc "misc"
          [:div
           (code :execmodes :full)
           [:p "By default, when exec is called, it simply generates the SQL string and params
-              necessary for your query and sends those to your database. Sometimes, however, what
-              you really want is to just generate the string, or even do a dry run where you see
-              the SQL printed to the console. As such, korma includes a couple of other execution
-              modes that allow you to do exactly that. These also apply to queries that are composed
-              over time and then executed using the (" [:em "exec"] ") function."]]
+           necessary for your query and sends those to your database. Sometimes, however, what
+           you really want is to just generate the string, or even do a dry run where you see
+           the SQL printed to the console. As such, korma includes a couple of other execution
+           modes that allow you to do exactly that. These also apply to queries that are composed
+           over time and then executed using the (" [:em "exec"] ") function."]
+          [:p [:em "sql-only"] " and "
+           [:em "dry-run"] " slightly different behaviour. Since subentities in relations are
+           fetched lazily, "  [:em "sql-only"] " will only show the select statement for the main
+           entity, while " [:em "dry-run"] " will also show the subentity selects."]
+
+          ]
          [:div
           (code :transactions :full)
           [:p "You can do transactions in Korma simply by using the (" [:em "transaction"] ") macro,
