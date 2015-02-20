@@ -41,6 +41,9 @@
       ;; and posts_id
       ;; like has-many, also gets the results in a second
       ;; query for each element
+      ;; does not allow a where clause in the users_posts
+      ;; table, a combination of has-many and belongs-to
+      ;; should be used instead if that is necessary
 
 ;; Subselects can be used as entities too!
 (defentity subselect-example
@@ -66,4 +69,9 @@
   (has-one users))
 
 (defentity posts
-  (many-to-many users :users_posts))
+  (many-to-many users :users_posts
+    {:lfk :posts_id :rfk :users_id})
+      ;; you can optionally specify the foreign keys
+      ;; left foreign key is for the main entity and
+      ;; right foreign key is for the joined entity
+      ;; the used values are the same as the defaults
