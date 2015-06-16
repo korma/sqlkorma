@@ -4,7 +4,7 @@
 (defentity users
   (table :somecrazy_table_name :users)
   (pk :userID)
-  (has-many address {:fk :userID}))
+  (has-many address (fk :userID)))
 
 (select users
   (with address)

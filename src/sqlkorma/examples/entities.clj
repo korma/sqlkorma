@@ -57,7 +57,7 @@
 (defentity address
   (pk :my_pk) ;; sets the primary key to "my_pk"
   (belongs-to users)
-  (belongs-to state {:fk :id_state}))
+  (belongs-to state (fk :id_state)))
       ;; you can optionally specify the foreign key
       ;; assumes state.id = address.id_state
 
@@ -66,11 +66,17 @@
   (has-many address))
 
 (defentity account
-  (has-one users))
+  (pk :id1 :id2)
+      ;; you can also set the entity primary key to a
+      ;; composite key ("id1", "id2")
+  (has-one users (fk :account_id1 :account_id2)))
+      ;; and set the composite foreign keys to join
+      ;; on account.id1 = users.account_id1
+      ;; and account.id2 = users.account_id2
 
 (defentity posts
   (many-to-many users :users_posts
-    {:lfk :posts_id :rfk :users_id})
+    (lfk :posts_id) (rfk :users_id)))
       ;; you can optionally specify the foreign keys
       ;; left foreign key is for the main entity and
       ;; right foreign key is for the joined entity
