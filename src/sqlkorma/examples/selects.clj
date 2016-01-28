@@ -6,6 +6,8 @@
                ;; defined in the entity
   (fields [:first :firstname] :last :address.zip)
       ;; you can alias a field using a vector of [field alias]
+      ;; these fields will be selected in addition to those defined
+      ;; using (entity-fields) in (defentity)
   (modifier "DISTINCT") ;; you can add a modifier
   (aggregate (count :*) :cnt :status)
       ;; You specify alias and optionally a field to group by
