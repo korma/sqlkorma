@@ -15,7 +15,8 @@
    "and" "or" "=" ">=" ">" "<" "<=" "not" "not-in" "not=" "in" "count" "sum"
    "avg" "exec" "sql-only" "dry-run" "exec-raw" "raw" "as-sql" "union"
    "union\\*" "union-all" "union-all\\*" "intersect" "intersect\\*" "queries"
-   "having" "having\\*" "where\\*" "modifier" "many-to-many" "msaccess" "h2"])
+   "having" "having\\*" "where\\*" "modifier" "many-to-many" "msaccess" "h2"
+   "fk" "lfk" "rfk"])
 
 (def clojure-vars ["def" "->" "defn" "use" "require" "ns" "if-not" "when-not"
                    "println" "declare"])
